@@ -5,6 +5,7 @@ import scala.concurrent.duration._
 
 object Altimeter {
 
+  def apply() = new Altimeter with ProductionEventSource
   // rate of climb changes
   case class RateChange(amount: Float)
 
@@ -13,8 +14,8 @@ object Altimeter {
 
 }
 
-class Altimeter extends Actor with ActorLogging
-                              with EventSource {
+class Altimeter extends Actor with ActorLogging {
+  this: EventSource =>
 
   import Altimeter._
 
