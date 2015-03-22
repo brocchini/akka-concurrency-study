@@ -13,7 +13,7 @@ object Plane {
 }
 
 class Plane extends Actor with ActorLogging {
-  val altimeter = context.actorOf(Props[Altimeter], "Altimeter")
+  val altimeter = context.actorOf(Props(Altimeter()), "Altimeter")
   val controls = context.actorOf(Props(new ControlSurfaces(altimeter)), "ControlSurfaces")
 
   override def receive: Receive = {
